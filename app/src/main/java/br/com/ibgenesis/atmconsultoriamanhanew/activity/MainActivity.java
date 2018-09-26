@@ -1,10 +1,12 @@
 package br.com.ibgenesis.atmconsultoriamanhanew.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,8 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import br.com.ibgenesis.atmconsultoriamanhanew.R;
+import br.com.ibgenesis.atmconsultoriamanhanew.fragment.ClientesFragment;
+import br.com.ibgenesis.atmconsultoriamanhanew.fragment.PrincipalFragment;
+import br.com.ibgenesis.atmconsultoriamanhanew.fragment.ServicosFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,8 +35,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                enviarEmail();
             }
         });
 
@@ -83,14 +88,20 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_principal) {
-            // Handle the camera action
+            carregarFragment(new PrincipalFragment());
+
         } else if (id == R.id.nav_servicos) {
+            carregarFragment(new ServicosFragment());
 
         } else if (id == R.id.nav_clientes) {
+            carregarFragment(new ClientesFragment());
 
         } else if (id == R.id.nav_contato) {
+            enviarEmail();
 
         } else if (id == R.id.nav_sobre) {
+
+            startActivity(new Intent(this, SobreActivity.class));
 
         }
 
@@ -98,4 +109,29 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void carregarFragment(Fragment fragment){
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameContainer, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void enviarEmail(){
+
+        Intent email = new Intent( Intent.ACTION_SEND );
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"atmconsultoria@gmail.com"} );
+        email.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo App");
+        email.putExtra(Intent.EXTRA_TEXT, "Mensagem Automática");
+        //Configurar apps para e-mail
+        email.setType("message/rfc822");
+        //email.setType("application/pdf");
+        //email.setType("image/png");
+
+        startActivity( Intent.createChooser(email, "Escolha o APP de e-mail:") );
+
+
+    }
+
+
 }

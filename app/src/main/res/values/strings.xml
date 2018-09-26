@@ -13,4 +13,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="titulo1_servicos">Sistemas de Gestão de Qualidade</string>
     <string name="qualidade_uma_responsabilidade_de_todos_os_n_veis_da_organiza_o_ao_implementar_um_sistema_de_gest_o_da_qualidade_a_empresa_se_prepara_melhor_para_gerenciar_os_riscos_relacionados_qualidade_existem_v_rias_normas_e_padr_es_para_medir_a_qualidade_como_a_iso_9001_iso_14001_iso_18001_iso31000_certifica_o_ona_e_outras">Qualidade é uma responsabilidade de todos os níveis da organização. Ao implementar um sistema de gestão da qualidade, a empresa se prepara melhor para gerenciar os riscos relacionados à qualidade. Existem várias normas e padrões para medir a qualidade, como a ISO 9001, ISO 14001, ISO 18001, ISO31000, certificação ONA e outras.</string>
+    <string name="title_activity_sobre">SobreActivity</string>
 </resources>
