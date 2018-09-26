@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_sobre) {
 
-            startActivity(new Intent(this, SobreActivity.class));
+
 
         }
 
